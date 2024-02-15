@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
@@ -80,6 +81,3 @@ const CreateBlog = ({ user }) => {
 };
 
 export default CreateBlog;
-
-
-

@@ -7,6 +7,7 @@ import Dashboard from './components/blogs/Dashboard';
 import CreateBlog from './components/blogs/CreateBlog';
 import ReadBlog from './components/blogs/ReadBlog';
 import RecentBlogs from './components/blogs/RecentBlogs';
+import Homepage from './components/blogs/HomePage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,7 +25,8 @@ function App() {
   return (
     <>
     <Routes>
-        <Route path={'/'} element={<Login user={user}/>} />
+        <Route path={'/login'} element={<Login user={user}/>} />
+        <Route path={'/'} element={<Homepage/>} />
         <Route path={'/signup'} element={<Signup/>} />
 
         {user ? (
