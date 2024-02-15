@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+    let navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const BlogCollectionRef = collection(db, "blog");
 
@@ -81,7 +82,7 @@ const Homepage = () => {
         <div className="flex justify-center">
           <div className="mx-auto max-w-screen-xl px-4 md:px-8">
             <div className="mb-10 md:mb-16">
-              <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
+              <h2 className="mb-2 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
                 Most Recent Posts
               </h2>
 
@@ -105,14 +106,15 @@ const Homepage = () => {
           {blog.description.split(" ").slice(0, 20).join(" ")}
           {blog.description.split(" ").length > 50 ? "..." : ""}
         </p>
-        <Link
-          to='/login'
-          className="group mt-auto flex w-44 cursor-pointer select-none items-center justify-center rounded-md bg-black px-6 py-2 text-white transition"
-        >
-          <span className="group flex w-full items-center justify-center rounded py-1 text-center font-bold text-sm">
-            Read More
-          </span>
-        </Link>
+        <button
+  onClick={() => navigate(`/myBlog/${blog.postId}`)}
+  className="group mt-auto flex w-44 cursor-pointer select-none items-center justify-center rounded-md bg-black px-6 py-2 text-white transition"
+>
+  <span className="group flex w-full items-center justify-center rounded py-1 text-center font-bold text-sm">
+    Read More
+  </span>
+</button>
+
       </div>
       <div className="order-first ml-auto h-48 w-full bg-gray-700 sm:order-none sm:h-auto sm:w-1/2 lg:w-2/5">
         <img

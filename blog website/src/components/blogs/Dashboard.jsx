@@ -2,6 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import GetMyBlogs from "./GetMyBlogs";
+import Navbar from "./Navbar";
 
 const Dashboard = ({user}) => {
   let navigate = useNavigate()
@@ -14,13 +15,9 @@ const Dashboard = ({user}) => {
     }
   }
 
-  console.log(user)
     return(
         <>
-          <h1>Hii</h1>
-          <button className="border" onClick={signOutUser}>SignOut</button>
-          <button className="border"><Link to='/createBlog'>Create Blog</Link></button>
-          <button classname="border"><Link to='/recentBlogs'>Recent Blogs</Link></button>
+          <Navbar/>
           <GetMyBlogs user={user}/>
         </>
     )
