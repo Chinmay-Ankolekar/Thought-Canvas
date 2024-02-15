@@ -5,6 +5,7 @@ import Login from './components/Login'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Dashboard from './components/blogs/Dashboard';
 import CreateBlog from './components/blogs/CreateBlog';
+import ReadBlog from './components/blogs/ReadBlog';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,6 +33,11 @@ function App() {
         )}
         {user ? (
           <Route path={'/createBlog'} element={<CreateBlog user={user}/>} />
+        ) : (
+          ""
+        )}
+        {user ? (
+          <Route path={'/myBlog/:postId'} element={<ReadBlog user={user}/>} />
         ) : (
           ""
         )}

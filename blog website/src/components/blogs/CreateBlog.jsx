@@ -1,70 +1,11 @@
-// import {
-//   addDoc,
-//   collection,
-//   deleteDoc,
-//   doc,
-//   getDocs,
-//   updateDoc,
-//   query,
-//   where,
-// } from "firebase/firestore";
-// import { db, storage } from "../../config/firebase";
-// import { useState } from "react";
-// import { Link } from "react-router-dom";
-
-// const CreateBlog = ({ user }) => {
-//     console.log(user.auth.currentUser.uid);
-//   const [title, setTitle] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [category, setCategory] = useState("");
-
-//   const BlogCollectionRef = collection(db, "blog");
-
-//   const onSubmit = async () => {
-//     try {
-//       await addDoc(BlogCollectionRef, {
-//         name: title,
-//         description: description,
-//         category: category,
-//         created_at: new Date().toLocaleString(),
-//         userId: user.auth.currentUser.uid,
-//       });
-//       const postId = docRef.id; 
-//       await updateDoc(docRef, { postId: postId });
-//       window.location.reload();
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <label>Title</label>
-//       <input type="text" onChange={(e)=> {setTitle(e.target.value)}}/>
-//       <br />
-//       <label>Description</label>
-//       <textarea rows={10} cols={50} placeholder="Enter description..." onChange={(e)=> {setDescription(e.target.value)}}/>
-//       <br />
-//       <label>Category</label>
-//       <input type="text" onChange={(e)=> {setCategory(e.target.value)}}/>
-//       <button onclick={onSubmit}>Create</button>
-//       <br />
-//       <button className="border">
-//         <Link to="/dashboard">Back Homepage</Link>
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default CreateBlog;
-
 import { useState } from "react";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { ref, uploadString, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../config/firebase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CreateBlog = ({ user }) => {
+    let navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -92,12 +33,15 @@ const CreateBlog = ({ user }) => {
             created_at: new Date().toLocaleString(),
             userId: user.auth.currentUser.uid,
             imageUrl: url,
-            
+            written_by: user.auth.currentUser.displayName,
+            profile_pic: user.auth.currentUser.photoURL,
           });
           const postId = docRef.id; 
       await updateDoc(docRef, { postId: postId });
 
           window.location.reload();
+          alert('Blog Created')
+          
         };
         reader.readAsDataURL(image);
       }
@@ -112,6 +56,7 @@ const CreateBlog = ({ user }) => {
       <input type="text" onChange={(e) => setTitle(e.target.value)} />
       <br />
       <label>Description</label>
+      <br />
       <textarea
         rows={10}
         cols={50}
