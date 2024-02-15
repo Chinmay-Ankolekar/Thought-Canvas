@@ -6,6 +6,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import Dashboard from './components/blogs/Dashboard';
 import CreateBlog from './components/blogs/CreateBlog';
 import ReadBlog from './components/blogs/ReadBlog';
+import RecentBlogs from './components/blogs/RecentBlogs';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,6 +39,11 @@ function App() {
         )}
         {user ? (
           <Route path={'/myBlog/:postId'} element={<ReadBlog user={user}/>} />
+        ) : (
+          ""
+        )}
+        {user ? (
+          <Route path={'/recentBlogs'} element={<RecentBlogs/>} />
         ) : (
           ""
         )}

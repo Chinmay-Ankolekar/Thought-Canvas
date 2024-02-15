@@ -20,6 +20,7 @@ const Dashboard = ({user}) => {
           <h1>Hii</h1>
           <button className="border" onClick={signOutUser}>SignOut</button>
           <button className="border"><Link to='/createBlog'>Create Blog</Link></button>
+          <button classname="border"><Link to='/recentBlogs'>Recent Blogs</Link></button>
           <GetMyBlogs user={user}/>
         </>
     )

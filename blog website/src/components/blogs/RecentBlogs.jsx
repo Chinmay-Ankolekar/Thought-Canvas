@@ -1,18 +1,16 @@
-import { collection, getDocs, where, query } from "firebase/firestore";
-import { useEffect,useState } from "react";
 import { db } from "../../config/firebase";
-import { useNavigate } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const GetMyBlogs = ({user}) => {
-    let navigate = useNavigate()
-    const userId = user.auth.currentUser.uid;
+const RecentBlogs = () => {
+    let navigate = useNavigate();
     const [blog, setBlogs] = useState([]);
-   
     const BlogCollectionRef = collection(db, "blog");
-
+  
     const getBlogs = async () => {
         try {
-          const querySnapshot = await getDocs(query(BlogCollectionRef, where("userId", "==", userId)));
+          const querySnapshot = await getDocs(BlogCollectionRef);
           const blogs = querySnapshot.docs.map((doc) => ({
             ...doc.data()
           }))
@@ -24,14 +22,16 @@ const GetMyBlogs = ({user}) => {
         }
       };
 
-      useEffect(() => {
-        getBlogs();
-      }, []);
-    
+        useEffect(() => {
+            getBlogs();
+        }, []);
 
     return (
-        <>
-            <h1>My Blogs</h1>
+        <div>
+            <h1>Recent Blogs</h1>
+          <button className="border"><Link to='/createBlog'>Create Blog</Link></button>
+          <button classname="border"><Link to='/recentBlogs'>Recent Blogs</Link></button>
+          <button className="border"><Link to='/dashboard'>Back to home</Link></button>
               {
                 blog.map((blog,index) => {
                     return(
@@ -49,9 +49,8 @@ const GetMyBlogs = ({user}) => {
                     )   
                 })
               }
-
-        </>
-    )
+        </div>
+    );
 }
 
-export default GetMyBlogs;
+export default RecentBlogs;

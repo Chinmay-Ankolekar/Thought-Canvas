@@ -3,6 +3,7 @@ import { db } from "../../config/firebase";
 import { collection, getDocs, query, where, deleteDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Comments from "./Comments";
 
 const ReadBlog = ({ user }) => {
     let navigate = useNavigate();
@@ -54,13 +55,18 @@ const ReadBlog = ({ user }) => {
   <span className="text-gray-600">Written by: {blog[0].written_by}</span>
 </p>
                   
-                            
-                <button className="border" onClick={() => deleteBlog(blog[0].postId)}>Delete</button>
+                {userId === blog[0].userId && (
+                    <button className="border" onClick={() => deleteBlog(blog[0].postId)}>Delete</button>
+                )}
+                
                     
 
                 </>
             )}
             <button className="border" onClick={()=> {navigate('/dashboard')}}>Back to Homepage</button>
+            <button className="border" onClick={()=> {navigate('/recentBlogs')}}>Back to Recent Blog</button>
+
+            <Comments postId={postId} user={userId} />
         </div>
     );
 };
