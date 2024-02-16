@@ -44,6 +44,8 @@ const CreateBlog = ({ user }) => {
                 imageUrl: url,
                 written_by: user.auth.currentUser.displayName,
                 profile_pic: user.auth.currentUser.photoURL,
+                joining_date: user.metadata.creationTime,
+                email: user.auth.currentUser.email,
             });
             const postId = docRef.id;
             await updateDoc(docRef, { postId: postId });

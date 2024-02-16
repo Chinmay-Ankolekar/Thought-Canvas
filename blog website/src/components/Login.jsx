@@ -1,23 +1,27 @@
 import { useState } from "react";
-import { auth, GoogleProvider } from "../config/firebase";
+import { auth, GoogleProvider, db } from "../config/firebase";
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { addDoc, collection, getDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = ({ user }) => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
 
   const Login = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
 
       if (auth.currentUser.email != null) {
+        
         navigate("/dashboard");
+        
       }
     } catch (error) {
       alert(error.message);
@@ -41,6 +45,8 @@ const Login = ({ user }) => {
   };
   console.log(user);
 
+ 
+
   return (
     <>
       <div class="flex flex-wrap">
@@ -56,9 +62,7 @@ const Login = ({ user }) => {
           </div>
           <div class="lg:w-[28rem] mx-auto my-auto flex flex-col justify-center pt-8 md:justify-start md:px-6 md:pt-0">
             <p class="text-left text-3xl font-bold">Welcome,</p>
-            <p class="mt-2 text-left text-gray-500">
-              Welcome back, Login to view Blogs
-            </p>
+            <p class="mt-2 text-left text-gray-500">Login to view Blogs</p>
             <button
               onClick={signInWithGoogle}
               class="-2 mt-8 flex items-center justify-center rounded-md border px-4 py-1 outline-none ring-gray-400 ring-offset-2 transition focus:ring-2 hover:border-transparent hover:bg-black hover:text-white"

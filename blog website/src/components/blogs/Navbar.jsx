@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
     let navigate = useNavigate();
+    const userId = auth.currentUser.uid;
   const signOutUser = async () => {
     try {
       await signOut(auth);
@@ -70,6 +71,13 @@ function Navbar() {
               className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
             >
               Create Blogs
+            </Link>
+            <Link
+              to={`/profile/${userId}`}
+              title=""
+              className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
+            >
+             My Profile
             </Link>
             <button
               onClick={signOutUser}

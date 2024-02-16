@@ -72,7 +72,7 @@ const Homepage = () => {
               title=""
               className="whitespace-nowrap rounded-xl bg-blue-700 px-5 py-3 font-medium text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 hover:bg-blue-600"
             >
-              Sign Up
+              Get Started
             </Link>
           </div>
         </nav>
@@ -117,7 +117,7 @@ const Homepage = () => {
                           {blog.description.split(" ").slice(0, 20).join(" ")}
                           {blog.description.split(" ").length > 50 ? "..." : ""}
                         </p>
-                        <p className="mt-auto text-gray-600 text-sm flex items-center">
+                        <Link to='/login' className="mt-auto text-gray-600 text-sm flex items-center">
                           {blog.profile_pic ? (
                             <img
                               src={blog.profile_pic}
@@ -154,7 +154,7 @@ const Homepage = () => {
                             </span>
                           )}
                           {blog.written_by}
-                        </p>
+                        </Link>
 
                         <button
                           onClick={() => navigate(`/login`)}

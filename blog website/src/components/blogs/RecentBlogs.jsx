@@ -58,7 +58,7 @@ const RecentBlogs = () => {
           {blog.description.split(" ").slice(0, 20).join(" ")}
           {blog.description.split(" ").length > 50 ? "..." : ""}
         </p>
-        <p className="mt-auto text-gray-600 text-sm flex items-center">
+        <Link to={`/profile/${blog.userId}`} className="mt-auto text-gray-600 text-sm flex items-center">
   {blog.profile_pic ? (
     <img src={blog.profile_pic} alt="" className="h-8 w-8 rounded-full mr-2" />
   ) : (
@@ -71,7 +71,7 @@ const RecentBlogs = () => {
   </span>
   )}
   {blog.written_by}
-</p>
+</Link>
 
 
 

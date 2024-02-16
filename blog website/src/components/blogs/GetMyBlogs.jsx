@@ -1,4 +1,4 @@
-import { collection, getDocs, where, query } from "firebase/firestore";
+import { collection, getDocs, where, query, addDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../config/firebase";
 import { useNavigate, Link } from "react-router-dom";
@@ -9,6 +9,7 @@ const GetMyBlogs = ({ user }) => {
   const [blog, setBlogs] = useState([]);
 
   const BlogCollectionRef = collection(db, "blog");
+  const userCollectionRef = collection(db, "users");
 
   const getBlogs = async () => {
     try {
@@ -21,12 +22,27 @@ const GetMyBlogs = ({ user }) => {
 
       setBlogs(blogs);
     } catch (error) {
-      console.error("Error getting movies: ", error);
+      console.error("Error ", error);
     }
   };
 
+  const LogUser = async() => {
+    try {
+     await addDoc(userCollectionRef, {
+       userId: user.auth.currentUser.uid,
+       name: user.auth.currentUser.displayName,
+       email: user.auth.currentUser.email,
+       profile_pic: user.auth.currentUser.photoURL,
+       creationTime: user.metadata.creationTime,
+     });
+    } catch (error) {
+     console.log(error.message);
+    }
+ }
+
   useEffect(() => {
     getBlogs();
+    LogUser();
   }, []);
 
   return (
@@ -67,7 +83,7 @@ const GetMyBlogs = ({ user }) => {
           {blog.description.split(" ").slice(0, 20).join(" ")}
           {blog.description.split(" ").length > 50 ? "..." : ""}
         </p>
-        <p className="mt-auto text-gray-600 text-sm flex items-center">
+        <Link to={`/profile/${blog.userId} `} className="mt-auto text-gray-600 text-sm flex items-center">
   {blog.profile_pic ? (
     <img src={blog.profile_pic} alt="" className="h-8 w-8 rounded-full mr-2" />
   ) : (
@@ -80,7 +96,7 @@ const GetMyBlogs = ({ user }) => {
 </span>
   )}
   {blog.written_by}
-</p>
+</Link>
 
 
         <button
@@ -88,7 +104,7 @@ const GetMyBlogs = ({ user }) => {
           className="group mt-2 flex w-44 cursor-pointer select-none items-center justify-center rounded-md bg-black px-6 py-2 text-white transition"
         >
           <span className="group flex w-full items-center justify-center rounded py-1 text-center font-bold text-sm">
-            Read More
+            View
           </span>
         </button>
       </div>

@@ -57,7 +57,7 @@ const Signup = () => {
           <div class="lg:w-[28rem] mx-auto my-auto flex flex-col justify-center pt-8 md:justify-start md:px-6 md:pt-0">
             <p class="text-left text-3xl font-bold">Welcome,</p>
             <p class="mt-2 text-left text-gray-500">
-              Welcome back, Login to view Blogs
+              Create an account to get started.
             </p>
             <button
               onClick={signInWithGoogle}

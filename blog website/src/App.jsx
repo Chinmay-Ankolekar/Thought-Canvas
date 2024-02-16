@@ -50,6 +50,11 @@ function App() {
         ) : (
           ""
         )}
+        {user ? (
+          <Route path={'/profile/:userId'} element={<Profile user={user}/>} />
+        ) : (
+          ""
+        )}
       </Routes>
     </>
   )
