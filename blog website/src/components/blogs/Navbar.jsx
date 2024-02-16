@@ -50,43 +50,53 @@ function Navbar() {
           className="peer-checked:pt-8 peer-checked:max-h-60 flex max-h-0 w-full flex-col items-center overflow-hidden transition-all lg:ml-24 lg:max-h-full lg:flex-row"
         >
           <hr className="mt-4 w-full lg:hidden" />
-          <div className="my-4 items-center space-y-4 lg:my-0 lg:ml-auto lg:space-y-0 lg:flex lg:items-center lg:space-x-8">
-            <Link
-              to="/dashboard"
-              title=""
-              className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block mx-2"
-            >
-              My Blogs
-            </Link>
-            <Link
-              to="/recentBlogs"
-              title=""
-              className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block mx-2"
-            >
-              Recent Blogs
-            </Link>
-            <Link
-              to="/createBlog"
-              title=""
-              className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
-            >
-              Create Blogs
-            </Link>
-            <Link
-              to={`/profile/${userId}`}
-              title=""
-              className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
-            >
-             My Profile
-            </Link>
-            <button
-              onClick={signOutUser}
-              title=""
-              className="whitespace-nowrap rounded-xl bg-blue-700 px-5 py-3 font-medium text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 hover:bg-blue-600 lg:block"
-            >
-              LogOut
-            </button>
-          </div>
+          <div className="my-4 lg:my-0 lg:ml-auto lg:flex lg:items-center lg:space-x-8">
+  <div className={`${window.innerWidth < 1024 ? 'p-1' : ''}`}>
+    <Link
+      to="/dashboard"
+      title=""
+      className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
+    >
+      My Blogs
+    </Link>
+  </div>
+  <div className={`${window.innerWidth < 1024 ? 'p-1' : ''}`}>
+    <Link
+      to="/recentBlogs"
+      title=""
+      className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
+    >
+      Recent Blogs
+    </Link>
+  </div>
+  <div className={`${window.innerWidth < 1024 ? 'p-1' : ''}`}>
+    <Link
+      to="/createBlog"
+      title=""
+      className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
+    >
+      Create Blogs
+    </Link>
+  </div>
+  <div className={`${window.innerWidth < 1024 ? 'p-1' : ''}`}>
+    <Link
+      to={`/profile/${userId}`}
+      title=""
+      className="whitespace-nowrap rounded font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-blue-700 focus:ring-offset-2 hover:text-opacity-50 lg:block"
+    >
+      My Profile
+    </Link>
+  </div>
+  <button
+    onClick={signOutUser}
+    title=""
+    className="whitespace-nowrap rounded-xl bg-blue-700 px-5 py-3 font-medium text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 hover:bg-blue-600 lg:block"
+  >
+    LogOut
+  </button>
+</div>
+
+
         </nav>
       </header>
       <hr />

@@ -144,12 +144,22 @@ const ReadBlog = ({ user }) => {
           </div>
           
           <div class="flex justify-center">
-            <button
+            {
+              blog[0].written_by === user.auth.currentUser.displayName ? (
+                <button
+                onClick={() => deleteBlog(blog[0].postId)}
+                 class="mt-6 px-4 py-2 text-sm font-medium leading-5 text-white uppercase transition-colors duration-150 bg-red-600 border border-transparent rounded-lg shadow focus:outline-none focus:shadow-outline-blue active:bg-blue-600 hover:bg-red-700"
+               >
+                 Delete Blog
+               </button>
+              ) : null
+            }
+            {/* <button
              onClick={() => deleteBlog(blog[0].postId)}
               class="mt-6 px-4 py-2 text-sm font-medium leading-5 text-white uppercase transition-colors duration-150 bg-red-600 border border-transparent rounded-lg shadow focus:outline-none focus:shadow-outline-blue active:bg-blue-600 hover:bg-red-700"
             >
               Delete Blog
-            </button>
+            </button> */}
           </div>
         </>
       )}
