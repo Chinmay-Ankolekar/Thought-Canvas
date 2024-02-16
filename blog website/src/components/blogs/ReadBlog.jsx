@@ -62,12 +62,19 @@ const ReadBlog = ({ user }) => {
     <header class="mx-auto max-w-screen-xl pt-28 text-center">
       {blog.length > 0 && (
         <>
-          <p class="text-gray-500">Published {blog[0].created_at}</p>
+          <p class="text-gray-500">Published <time className="text-md" dateTime={blog[0].created_at}>
+  {new Date(blog[0].created_at).toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    hour: 'numeric',
+    minute: 'numeric'
+  })}
+</time></p>
           <h1 class="mt-2 text-3xl font-bold text-gray-900 sm:text-5xl">
             {blog[0].name}
           </h1>
           <p class="mt-6 text-lg text-gray-700">
-            You're doing marketing the wrong way
+            {blog[0].sub_title}
           </p>
           <div
             class="mt-6 flex flex-wrap justify-center gap-2"
@@ -77,11 +84,15 @@ const ReadBlog = ({ user }) => {
               {blog[0].category}
             </button>
           </div>
-          <img
-            class="sm:h-[34rem] mt-10 w-full object-contain"
-            src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt="Featured Image"
-          />
+          {
+            blog[0].imageUrl === "" ? null : (
+              <img
+                class="sm:h-[34rem] mt-10 w-full object-contain"
+                src={blog[0].imageUrl}
+                alt="Featured Image"
+              />
+            )
+          }
         </>
       )}
     </header>
@@ -101,29 +112,6 @@ const ReadBlog = ({ user }) => {
 
       
 
-
-      {/*             
-            {blog.length > 0 && (
-                <>
-                    <h1>{blog[0].name}</h1>
-                    <img src={blog[0].imageUrl} width="500" alt="" />
-                    <p>{blog[0].description}</p>
-                    <p>Created at: {blog[0].created_at}</p>
-                    <p className="flex items-center">
-  <img src={blog[0].profile_pic} alt="" width="20" className="rounded-full mr-2" />
-  <span className="text-gray-600">Written by: {blog[0].written_by}</span>
-</p>
-                  
-                {userId === blog[0].userId && (
-                    <button className="border" onClick={() => deleteBlog(blog[0].postId)}>Delete</button>
-                )}
-                
-                    
-
-                </>
-            )}
-            <button className="border" onClick={()=> {navigate('/dashboard')}}>Back to Homepage</button>
-            <button className="border" onClick={()=> {navigate('/recentBlogs')}}>Back to Recent Blog</button> */}
 
       <Comments postId={postId} user={userId} />
     </div>

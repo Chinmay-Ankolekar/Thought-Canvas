@@ -78,7 +78,10 @@ const Homepage = () => {
       </header>
       <hr />
 
-      <section className="bg-white py-6 sm:py-8 lg:py-12">
+      {
+        blogs.length === 0 ? <h1 className="text-center mb-4 text-2xl font-bold text-gray-800">No Blogs Found</h1> :
+
+        <section className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="flex justify-center">
           <div className="mx-auto max-w-screen-xl px-4 md:px-8">
             <div className="mb-10 md:mb-16">
@@ -131,6 +134,9 @@ const Homepage = () => {
           </div>
         </div>
       </section>
+      }
+
+     
     </>
   );
 };
