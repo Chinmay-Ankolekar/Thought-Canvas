@@ -11,17 +11,25 @@ This is a blog website where users can register, write their own blogs, comment 
 
 ## Technologies Used
 
-- Frontend: HTML, CSS, JavaScript, React.js
+- Frontend: React.js
 - Database: Firebase Firestore
 - Authentication: Firebase Authentication
 - Storage: Firebase Storage
+
+## Styling with Tailwind CSS
+   
+The application's UI is styled using Tailwind CSS.
+
+## Component Library
+
+This project utilizes Component Library Preline, ComponentLand for cards, pages, and other components.
 
 ## Getting Started
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/blog-website.git
+   git clone https://github.com/Chinmay-Ankolekar/Thought-Canvas.git
    
 2. ```bash
    cd blog-website
