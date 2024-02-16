@@ -4,7 +4,7 @@ This is a blog website where users can register, write their own blogs, comment 
 
 ## Features
 
-- User Registration: Users can create an account to start writing and commenting on blogs.
+- User Registration: Users can create an account to start writing blogs.
 - Blog Writing: Registered users can write their own blogs and publish them on the platform.
 - Commenting: Users can comment on blogs written by other users.
 - Reading Blogs: All users can read the blogs published on the platform.
