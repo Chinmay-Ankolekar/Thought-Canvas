@@ -78,9 +78,9 @@ const Comments = ({ postId }) => {
                 width="20"
                 className="rounded-full"
               /> */}
-              <span className="text-gray-600">
+              <Link to={`/profile/${comment.userId}`} className="text-gray-600">
                  {comment.written_by}
-              </span>
+              </Link>
             </p>
             <time className="text-xs" dateTime={comment.commented_at}>
   {new Date(comment.commented_at).toLocaleString('en-US', {

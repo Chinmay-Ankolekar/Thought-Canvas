@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { db } from "../../config/firebase";
 import {
   collection,
@@ -9,7 +8,7 @@ import {
   doc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import Comments from "./Comments";
 import Navbar from "./Navbar";
 
@@ -140,7 +139,7 @@ const ReadBlog = ({ user }) => {
               </span>
             )}
             
-            <p className="text-gray-600 text-sm">{blog[0].written_by}</p>
+            <Link to={`/profile/${blog[0].userId}`} className="text-gray-600 text-sm">{blog[0].written_by}</Link>
           </div>
           
           <div class="flex justify-center">
